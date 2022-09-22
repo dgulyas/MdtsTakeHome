@@ -9,6 +9,8 @@
             string filePath = ".\\data.json";
             var data = helpers.DataFileInterface.MakeDataFromFile(filePath);
 
+            var datasets = data.datasets;
+            var generators = data.generators;
         }
     }
 }
