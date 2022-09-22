@@ -20,7 +20,7 @@
 
             if (!operations.Contains(operation))
             {
-                throw new Exception($"Invalid Operations:{operation}");
+                throw new Exception($"Invalid Operation:{operation}");
             }
 
             datasets = a_datasets;
@@ -44,12 +44,12 @@
 
         }
 
-        public string GetTimestamp()
+        private string GetTimestamp()
         {
             return DateTime.Now.ToString("HH:mm:ss");
         }
 
-        public double GetResult(int targetDataset)
+        private double GetResult(int targetDataset)
         {
             var dataset = datasets[targetDataset];
 
