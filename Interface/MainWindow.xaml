@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="483" Width="800">
+    <StackPanel>
+        <Label Content="Datasets" FontWeight="Bold"/>
+        <DataGrid Height="100" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Label Content="Generators" FontWeight="Bold" Padding="5,20,5,5"/>
+        <DataGrid Height="100" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged"/>
+        <Label Content="Output" FontWeight="Bold" Padding="5,20,5,5"/>
+        <TextBox TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextChanged="TextBox_TextChanged" Height="144"/>
+    </StackPanel>
 
-    </Grid>
 </Window>
