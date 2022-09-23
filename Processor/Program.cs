@@ -1,4 +1,5 @@
 ﻿using Processor.Controllers;
+using System.Text;
 
 namespace Processor
 {
@@ -29,6 +30,7 @@ namespace Processor
             {
                 var secondsSinceStart = (DateTime.Now - start).Seconds;
 
+                var output = new StringBuilder();
                 var finishedGenerators = new List<Generator>();
                 generators.ForEach(g =>
                 {
@@ -40,8 +42,8 @@ namespace Processor
                             finishedGenerators.Add(g);
                         }
                         else
-                        { //TODO: batch up results so that there's only 1 WriteLine per while loop. This will help with WPF refactoring.
-                            Console.WriteLine(result);
+                        {
+                            output.Append(result + Environment.NewLine);
                         }
                     }
                 });
@@ -50,6 +52,8 @@ namespace Processor
                 {
                     generators.Remove(fg);
                 });
+
+                Console.Write(output.ToString());
 
                 Thread.Sleep(1000); //sleep 1 second
             }
