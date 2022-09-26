@@ -1,7 +1,7 @@
-﻿using MdtTakeHome.models;
+﻿using MdtTakeHome.Models;
 using System.Text.Json;
 
-namespace Processor.helpers
+namespace Processor.Helpers
 {
     public static class DataFileInterface
     {

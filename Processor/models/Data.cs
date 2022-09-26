@@ -1,4 +1,4 @@
-﻿namespace MdtTakeHome.models
+﻿namespace MdtTakeHome.Models
 {
     public class Data
     {

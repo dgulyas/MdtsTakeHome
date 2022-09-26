@@ -8,9 +8,20 @@
         Title="MainWindow" Height="558" Width="800">
     <StackPanel>
         <Label Content="Datasets" FontWeight="Bold"/>
-        <DataGrid Height="100" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="15,0,15,0"/>
+        <DataGrid Height="100" ItemsSource="{Binding Datasets}" AutoGenerateColumns="False" Margin="15,0,15,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="50" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Data" Width="*" Binding="{Binding DatasetString}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Label Content="Generators" FontWeight="Bold" Padding="5,20,5,5"/>
-        <DataGrid Height="100" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="15,0,15,0"/>
+        <DataGrid Height="100" ItemsSource="{Binding Generators}" AutoGenerateColumns="False" Margin="15,0,15,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Interval" Width="50" Binding="{Binding Interval}"/>
+                <DataGridTextColumn Header="Operation" Width="*" Binding="{Binding Operation}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Margin="5,10,5,0">
             <Grid>
                 <Grid.ColumnDefinitions>

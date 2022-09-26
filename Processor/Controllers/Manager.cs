@@ -1,4 +1,4 @@
-﻿using MdtTakeHome.models;
+﻿using MdtTakeHome.Models;
 
 namespace Processor.Controllers
 {

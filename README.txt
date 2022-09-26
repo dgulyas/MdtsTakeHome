@@ -5,8 +5,7 @@
 
 # Assumptions:
 * A generator interval is an integer.
-* Computing the output of each generator will take less than 1 second.
-* ??There is at least one generator and dataset??
+* Computing the output of all generators will take less than 1 second.
 
 # Issues:
 * There are some TODOs in the code.

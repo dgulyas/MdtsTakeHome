@@ -7,7 +7,7 @@ namespace Processor
         static void Main(string[] args)
         {
             string filePath = ".\\data.json";
-            var data = helpers.DataFileInterface.MakeDataFromFile(filePath);
+            var data = Helpers.DataFileInterface.MakeDataFromFile(filePath);
 
             if(data.datasets.Count < 1 || data.datasets.Count < 1)
             {
