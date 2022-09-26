@@ -17,8 +17,8 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Content="Save" Grid.Column="0" Margin="30,10,30,10"/>
-                <Button Content="Run" Grid.Column="1" Margin="30,10,30,10"/>
+                <Button Content="Save" Grid.Column="0" Margin="30,10,30,10" Click="Save_Button_Click"/>
+                <Button Content="Run" Grid.Column="1" Margin="30,10,30,10" Click="Run_Button_Click"/>
             </Grid>
         </Border>
         <Label Content="Output" FontWeight="Bold" Padding="5,15,5,5"/>

@@ -24,5 +24,15 @@ namespace Interface
         {
             InitializeComponent();
         }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Run_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

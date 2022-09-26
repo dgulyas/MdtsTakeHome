@@ -5,7 +5,8 @@
 
 #Assumptions:
 * A generator interval is an integer.
+* Computing the output of each generator will take less than 1 second.
 
 #Issues:
-* The current approach uses Sleep(1000) which waits exactly 1 second before continuting execution. Since the rest of the statements in the loop take time to execute, each loop takes slightly longer than 1 second. Over a long enough time this extra time will cause a second to be missed. I have ideas for fixing this, but they would take to long to experiment with.
 * There are some TODOs in the code.
+* There are some floating point math issues making Step 1's output not match the spec.
