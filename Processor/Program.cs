@@ -1,5 +1,4 @@
 ﻿using Processor.Controllers;
-using System.Text;
 
 namespace Processor
 {
@@ -10,54 +9,32 @@ namespace Processor
             string filePath = ".\\data.json";
             var data = helpers.DataFileInterface.MakeDataFromFile(filePath);
 
-            var datasets = data.datasets;
-            var generatorSettings = data.generators;
-
-            var generators = new List<Generator>();
-
-            generatorSettings.ForEach(gs =>
+            if(data.datasets.Count < 1 || data.datasets.Count < 1)
             {
-                if (gs.name == null || gs.interval == 0 || gs.operation == null)
-                { //TODO: Say which setting is bad in error message
-                    throw new Exception("Problem with generator definition");
+                return;
+            }
+
+            var manager = new Manager(data);
+            var startMs = DateTime.Now.Millisecond;
+
+            while(true)
+            {
+                var now = DateTime.Now;
+                (var keepGoing, var output) = manager.Tick();
+                foreach(var line in output)
+                {
+                    var timestamp = now.ToString("HH:mm:ss");
+                    Console.WriteLine(timestamp + " " + line);
                 }
 
-                generators.Add(new Generator(gs.name, gs.interval, gs.operation, datasets));
-            });
-
-            var start = DateTime.Now;
-            while(generators.Count > 0)
-            {
-                var secondsSinceStart = (DateTime.Now - start).Seconds;
-
-                var output = new StringBuilder();
-                var finishedGenerators = new List<Generator>();
-                generators.ForEach(g =>
+                if (!keepGoing)
                 {
-                    if(secondsSinceStart % g.interval == 0)
-                    {
-                        var result = g.Generate();
-                        if(result == null)
-                        {
-                            finishedGenerators.Add(g);
-                        }
-                        else
-                        {
-                            output.Append(result + Environment.NewLine);
-                        }
-                    }
-                });
+                    break;
+                }
 
-                finishedGenerators.ForEach(fg =>
-                {
-                    generators.Remove(fg);
-                });
-
-                Console.Write(output.ToString());
-
-                Thread.Sleep(1000); //sleep 1 second
+                int waitTimeMs = (1000 - now.Millisecond) + startMs;
+                Thread.Sleep(waitTimeMs);
             }
-            
         }
 
     }
