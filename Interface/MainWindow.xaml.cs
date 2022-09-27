@@ -26,7 +26,7 @@ namespace Interface
             CreateDatasets(data);
             CreateGenerators(data);
 
-            
+            viewModel.Output = "Click Run to start simulation and Save to save modified inputs.";
         }
 
         private void CreateDatasets(Data data)
@@ -55,7 +55,7 @@ namespace Interface
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            viewModel.Output += "thing";
         }
 
         private void Run_Button_Click(object sender, RoutedEventArgs e)
