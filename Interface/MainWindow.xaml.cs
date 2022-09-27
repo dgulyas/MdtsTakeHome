@@ -13,6 +13,7 @@ namespace Interface
     public partial class MainWindow : Window
     {
         private readonly ViewModel viewModel;
+        private readonly string FilePath = ".\\data.json";
 
         public MainWindow()
         {
@@ -21,8 +22,7 @@ namespace Interface
             viewModel = new ViewModel();
             DataContext = viewModel;
 
-            string filePath = ".\\data.json";
-            var data = DataFileInterface.MakeDataFromFile(filePath);
+            var data = DataFileInterface.MakeDataFromFile(FilePath);
             CreateDatasets(data);
             CreateGenerators(data);
 
@@ -55,7 +55,39 @@ namespace Interface
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.Output += "thing";
+            var data = new Data();
+
+            data.datasets = ParseDatasets();
+            data.generators = ParseGenerators();
+
+            DataFileInterface.WriteDataToFile(FilePath, data);
+        }
+
+        private List<List<double>> ParseDatasets()
+        {
+            var datasets = (new List<double>[viewModel.Datasets.Count()]).ToList();
+            foreach (var datasetBindable in viewModel.Datasets)
+            { //lol who needs error checking
+                var dataset = datasetBindable.DatasetString.Split(',').Select(x => double.Parse(x)).ToList();
+                datasets[datasetBindable.ID] = dataset;
+            }
+            return datasets;
+        }
+
+        private List<Generator> ParseGenerators()
+        {
+            var generators = new List<Generator>(viewModel.Generators.Count());
+            foreach (var generatorBindable in viewModel.Generators)
+            {
+                var generator = new Generator
+                {
+                    interval = int.Parse(generatorBindable.Interval),
+                    name = generatorBindable.Name,
+                    operation = generatorBindable.Operation,
+                };
+                generators.Add(generator);
+            }
+            return generators;
         }
 
         private void Run_Button_Click(object sender, RoutedEventArgs e)
