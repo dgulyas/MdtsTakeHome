@@ -9,14 +9,14 @@ namespace Interface.Bindables
         public IEnumerable<DataSetBindable> Datasets { get; set; }
         public IEnumerable<GeneratorBindable> Generators { get; set; }
         public string Output {
-            get { return output; }
+            get { return m_output; }
             set
             {
-                output = value;
+                m_output = value;
                 OnPropertyChanged();
             }
         }
-        private string output;
+        private string m_output;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

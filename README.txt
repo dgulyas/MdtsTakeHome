@@ -15,3 +15,4 @@
 # Improvements:
 * Right after starting, we could look to see what operations are supported and then precompute each datasets result for each operation. Then no math needs to happen during simulation.
 * When saving, the json in saved un-formatted. This might work: https://stackoverflow.com/a/67928315/3128682
+* Make DGVs uneditable in certain ways.

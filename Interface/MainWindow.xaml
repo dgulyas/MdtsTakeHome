@@ -33,7 +33,6 @@
         </Border>
         <Label Content="Output" FontWeight="Bold" Padding="5,15,5,5"/>
         <TextBox Text="{Binding Output}"  TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="144" Margin="15,0,15,0"/>
-        
     </StackPanel>
 
 </Window>

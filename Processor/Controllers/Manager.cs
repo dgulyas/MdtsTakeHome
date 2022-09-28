@@ -4,44 +4,44 @@ namespace Processor.Controllers
 {
     public class Manager
     {
-        private List<Generator> generators;
-        public List<List<double>> datasets;
-        private int tickNum = -1;
+        private readonly List<Generator> m_generators;
+        private readonly List<List<double>> m_datasets;
+        private int m_tickNum = -1;
 
         //keeps track of which dataset the generator should use next
-        private Dictionary<string, int> genToDataset;
+        private Dictionary<string, int> m_genToDataset;
 
         public Manager(Data data)
         {
-            generators = data.generators;
-            datasets = data.datasets;
+            m_generators = data.generators;
+            m_datasets = data.datasets;
 
-            genToDataset = new Dictionary<string, int>();
-            for (int i = 0; i < generators.Count; i++)
+            m_genToDataset = new Dictionary<string, int>();
+            for (int i = 0; i < m_generators.Count; i++)
             {
-                genToDataset.Add(generators[i].name, 0);
-            }            
+                m_genToDataset.Add(m_generators[i].name, 0);
+            }
         }
 
         //Returns true if there are unfinished generators.
         //Lets the calling program know when to end its loop.
         public (bool, List<string>) Tick()
-        { 
-            tickNum++;
+        {
+            m_tickNum++;
 
             var output = new List<string>();
             var finishedGenerators = new List<Generator>();
-            for(int i = 0; i < generators.Count; i++)
+            for(int i = 0; i < m_generators.Count; i++)
             {
-                var g = generators[i];
-                if (tickNum % g.interval == 0)
+                var g = m_generators[i];
+                if (m_tickNum % g.interval == 0)
                 {
-                    var result = g.Generate(datasets[genToDataset[g.name]]);
+                    var result = g.Generate(m_datasets[m_genToDataset[g.name]]);
                     output.Add(g.name + " " + result);
 
                     //See if this generator is done
-                    genToDataset[g.name]++;
-                    if (genToDataset[g.name] >= datasets.Count)
+                    m_genToDataset[g.name]++;
+                    if (m_genToDataset[g.name] >= m_datasets.Count)
                     {
                         finishedGenerators.Add(g);
                     }
@@ -50,10 +50,10 @@ namespace Processor.Controllers
 
             finishedGenerators.ForEach(fg =>
             {
-                generators.Remove(fg);
+                m_generators.Remove(fg);
             });
 
-            return (generators.Any(), output);
+            return (m_generators.Any(), output);
         }
 
     }
