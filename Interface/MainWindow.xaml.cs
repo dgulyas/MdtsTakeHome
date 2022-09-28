@@ -54,8 +54,10 @@ namespace Interface
                 m_viewModel.Output = "";
                 m_simWorker.RunWorkerAsync();
             }
+            //TODO: Would be nice to have a visual indication that the sim is running.
         }
 
+        //TODO: Move these BackgroundWorker functions into a seperate class?
         private void SimWorker_DoWork(object? sender, DoWorkEventArgs e)
         {
             var data = new Data();
