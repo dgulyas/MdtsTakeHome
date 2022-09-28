@@ -5,8 +5,8 @@ namespace Processor.Helpers
 {
     public static class DataFileInterface
     {
-        private static string deserializationError = "Error during deserialization of file:";
-        private static string serializationError = "Error during serialization to file:";
+        private const string DeserializationError = "Error during deserialization of file:";
+        private const string SerializationError = "Error during serialization to file:";
 
         public static Data MakeDataFromFile(string FilePath)
         {
@@ -19,12 +19,12 @@ namespace Processor.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"{deserializationError}{deserializationError}", e);
+                throw new Exception($"{DeserializationError}{DeserializationError}", e);
             }
 
             if (data == null)
             {
-                throw new Exception($"{deserializationError}{FilePath}");
+                throw new Exception($"{DeserializationError}{FilePath}");
             }
 
             return data;
@@ -40,7 +40,7 @@ namespace Processor.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"{serializationError}{FilePath}", e);
+                throw new Exception($"{SerializationError}{FilePath}", e);
             }
 
             try
@@ -49,7 +49,7 @@ namespace Processor.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"{serializationError}{FilePath}", e);
+                throw new Exception($"{SerializationError}{FilePath}", e);
             }
         }
 
